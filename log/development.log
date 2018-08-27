@@ -2,6 +2,7 @@ DEPRECATION WARNING: Static attributes will be removed in FactoryBot 5.0. Please
 attributes instead by wrapping the attribute value in a block:
 
 email { "MyString" }
+name { "MyString" }
 
 To automatically update from static attributes to dynamic ones,
 install rubocop-rspec and run:
@@ -16,6 +17,11 @@ DEPRECATION WARNING: Static attributes will be removed in FactoryBot 5.0. Please
 attributes instead by wrapping the attribute value in a block:
 
 username { "MyString" }
+ (called from block (2 levels) in <top (required)> at /Users/sylvance/rails/rails-vue-online-store/spec/factories/goods.rb:3)
+DEPRECATION WARNING: Static attributes will be removed in FactoryBot 5.0. Please use dynamic
+attributes instead by wrapping the attribute value in a block:
+
+user { nil }
 
 To automatically update from static attributes to dynamic ones,
 install rubocop-rspec and run:
@@ -54,3 +60,30 @@ Migrating to CreateUsers (20180826235457)
   [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-08-26 23:56:01.862824"], ["updated_at", "2018-08-26 23:56:01.862824"]]
   [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
   [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+ (called from block (2 levels) in <top (required)> at /Users/sylvance/rails/rails-vue-online-store/spec/factories/goods.rb:4)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateGoods (20180826235943)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "goods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_88c36f52c3"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_goods_on_user_id" ON "goods" ("user_id")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180826235943"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-08-26 23:59:45.796732"], ["updated_at", "2018-08-26 23:59:45.796732"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_goods_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_goods_on_user_id' AND type='index'
+[0m
